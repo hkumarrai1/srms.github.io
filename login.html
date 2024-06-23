@@ -3,23 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqk1wM+hHuwq6qtpyHTx+vefJQ+j8+H84rZLK9wXXFDftl/L+FznqGcy22hL3y21+mfS7csbA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Advanced Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .container {
+            position: relative;
+            width: 360px;
+            height: 480px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .login-form, .signup-form {
+            padding: 40px;
+            color: #333;
+            text-align: center;
+            background-color: #fff; /* White background for forms */
+        }
+
+        .login-form h2, .signup-form h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333; /* Darker heading color */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold; /* Bold labels */
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff; /* Blue button color */
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .social-login button {
+            background-color: #fff;
+            color: #333;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            flex: 1; /* Equal width for social login buttons */
+            margin: 0 5px; /* Add some space between buttons */
+        }
+
+        .social-login button:hover {
+            background-color: #eee;
+        }
+
+        .signup-form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa; /* Light gray background for signup form */
+            transform: translateX(100%); /* Initially slide signup form out */
+        }
+
+        .signup-form h2 {
+            color: #007bff; /* Blue heading color */
+        }
+
+        .signup-form button {
+            background-color: #007bff; /* Blue button color */
+        }
+
+        .signup-form .hint {
+            color: #333; /* Darker hint text color */
+            margin-top: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .signup-form .hint:hover {
+            text-decoration: underline;
+        }
+
+        .panel-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #007bff; /* Blue background for panel */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(100%); /* Initially slide panel out */
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .panel-right h2 {
+            font-size: 32px; /* Larger heading size */
+        }
+
+        .panel-right p {
+            font-size: 18px; /* Larger paragraph size */
+            margin-bottom: 20px;
+        }
+
+        .panel-right button {
+            background-color: #fff; /* White button color */
+            color: #007bff; /* Blue text color */
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            width: 150px;
+        }
+
+        .panel-right button:hover {
+            background-color: #eee;
+        }
+
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .slide-btn i {
+            font-size: 24px;
+            color: #fff; /* White arrow color */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="login-form">
-            <h2>Diprella</h2>
-            <h2>Login to Your Account</h2>
-            <p>Login using social networks</p>
-            <div class="social-login">
-                <button><i class="fab fa-facebook-f"></i> Facebook</button>
-                <button><i class="fab fa-google"></i> Google</button>
-                <button><i class="fab fa-linkedin-in"></i> LinkedIn</button>
-            </div>
-            <p>OR</p>
-            <form action="#" method="post">
+        <div class="panel-right">
+            <h2>Welcome Back!</h2>
+            <p>Login to your account and enjoy the amazing features we have to offer.</p>
+            <button>Login</button>
+            <button class="slide-btn" onclick="slideForm('login')"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        <div class="form-container">
+            <form class="login-form" action="#" method="post">
+                <h2>Login</h2>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email">
@@ -29,14 +211,38 @@
                     <input type="password" id="password" name="password" placeholder="Enter your password">
                 </div>
                 <button type="submit">Sign In</button>
+                <p>OR</p>
+                <div class="social-login">
+                    <button><i class="fab fa-facebook-f"></i> Facebook</button>
+                    <button><i class="fab fa-google"></i> Google</button>
+                    <button><i class="fab fa-linkedin-in"></i> LinkedIn</button>
+                </div>
+            </form>
+            <form class="signup-form" action="#" method="post">
+                <h2>New Here?</h2>
+                <p>Sign up and discover a great amount of new opportunities!</p>
+                <button>Sign Up</button>
+                <p class="hint" onclick="slideForm('signup')">Already have an account? Login</p>
             </form>
         </div>
-        <div class="signup-form">
-            <h2>New Here?</h2>
-            <p>Sign up and discover a great amount of new opportunities!</p>
-            <button>Sign Up</button>
-            <p class="hint">Х</p>
-        </div>
     </div>
+
+    <script>
+        function slideForm(formType) {
+            const formContainer = document.querySelector('.form-container');
+            const signupForm = document.querySelector('.signup-form');
+            const panelRight = document.querySelector('.panel-right');
+
+            if (formType === 'login') {
+                formContainer.style.transform = 'translateX(0)';
+                signupForm.style.transform = 'translateX(100%)';
+                panelRight.style.transform = 'translateX(100%)';
+            } else if (formType === 'signup') {
+                formContainer.style.transform = 'translateX(-100%)';
+                signupForm.style.transform = 'translateX(0)';
+                panelRight.style.transform = 'translateX(0)';
+            }
+        }
+    </script>
 </body>
 </html>
