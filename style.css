@@ -11,6 +11,10 @@
   object-fit: cover;
   filter: blur(5px);
 }
+ a {
+      text-decoration: none;
+      color: inherit;
+    }
 
 .card {
   width: 190px;
